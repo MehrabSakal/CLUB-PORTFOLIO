@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KUET ADVENTURE CLUB</title>
     <link rel="stylesheet" href="kaclub.css">
+    <script src="kaclub.js" defer></script>
 </head>
 
 <body>
@@ -35,43 +36,49 @@
 
 <section id="activities" class="container">
     <h2 class="section-title">Our Activities</h2>
+    <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="land">Land</button>
+        <button class="filter-btn" data-filter="water">Water</button>
+        <button class="filter-btn" data-filter="extreme">Extreme</button>
+    </div>
     <div class="activities">
-        <div class="card">
+        <div class="card" data-category="land">
             <h3>Trekking</h3>
             <p>Explore mountains and trails with our experienced team.</p>
         </div>
 
-        <div class="card">
+        <div class="card" data-category="land">
             <h3>Camping</h3>
             <p>Enjoy nights under the stars with exciting campfire events.</p>
         </div>
 
-        <div class="card">
+        <div class="card" data-category="land">
             <h3>Cycling</h3>
             <p>Join our long-distance cycling tours and fitness rides.</p>
         </div>
 
-        <div class="card">
+        <div class="card" data-category="land">
             <h3>Workshops</h3>
             <p>Learn survival skills, navigation, and outdoor safety.</p>
         </div>
 
-        <div class="card">
+        <div class="card" data-category="extreme">
             <h3>Sky Diving</h3>
             <p>Learn to fly, explore the sky, and enjoy the moment.</p>
         </div>
 
-        <div class="card">
+        <div class="card" data-category="extreme">
             <h3>Bunji Jumping</h3>
             <p>Learn to face the height and enjoy the moment.</p>
         </div>
 
-        <div class="card">
+        <div class="card" data-category="water">
             <h3>Surfing</h3>
             <p>Conquer the waves.</p>
         </div>
 
-        <div class="card">
+        <div class="card" data-category="water">
             <h3>Adventure Boat</h3>
             <p>Play with the wave and feel the adventure.</p>
         </div>
@@ -81,9 +88,9 @@
 <section id="gallery" class="container">
     <h2 class="section-title">Gallery</h2>
     <div class="gallery">
-        <img src="1.jpeg">
-        <img src="3.jpeg">
-        <img src="4.jpeg">
+        <img src="1.jpeg" class="gallery-img" alt="Gallery Image 1" style="cursor: pointer;">
+        <img src="3.jpeg" class="gallery-img" alt="Gallery Image 2" style="cursor: pointer;">
+        <img src="4.jpeg" class="gallery-img" alt="Gallery Image 3" style="cursor: pointer;">
     </div>
 </section>
 
@@ -95,7 +102,8 @@
 
 <section id="registration" class="container reg_form">
     <h2 class="section-title">Register for Adventure</h2>
-    <form action="#" method="POST" class="registration-form">
+    <div id="formSuccess" class="hidden">Thank you for registering! We will contact you soon.</div>
+    <form action="#" method="POST" class="registration-form" id="regForm">
         <div class="form-group">
             <label for="fullName">Full Name</label>
             <input type="text" id="fullName" name="fullName" placeholder="e.g. John Doe" required>
@@ -145,6 +153,12 @@
 <footer>
     <p>© 2026 KUET Adventure Club | All Rights Reserved</p>
 </footer>
+
+<!-- Lightbox Container -->
+<div id="lightbox" class="lightbox hidden">
+    <span class="close-lightbox">&times;</span>
+    <img id="lightbox-img" src="" alt="Enlarged view">
+</div>
 
 </body>
 </html>
