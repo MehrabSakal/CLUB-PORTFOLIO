@@ -93,10 +93,52 @@
     <p>Location: KUET Campus, Khulna</p>
 </section>
 
-<section id="registration" class="reg_form">
-    <h2 class="section-title">Registrater for Adventure</h2>
-    <form>
-        
+<section id="registration" class="container reg_form">
+    <h2 class="section-title">Register for Adventure</h2>
+    <form action="#" method="POST" class="registration-form">
+        <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" placeholder="e.g. John Doe" required>
+        </div>
+
+        <div class="form-group">
+            <label for="studentId">Student ID</label>
+            <input type="text" id="studentId" name="studentId" placeholder="e.g. 1907001" required>
+        </div>
+
+        <div class="form-group">
+            <label for="department">Department</label>
+            <input type="text" id="department" name="department" placeholder="e.g. CSE" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="Your contact number" required>
+        </div>
+
+        <div class="form-group">
+            <label for="interest">Area of Interest</label>
+            <select id="interest" name="interest" required>
+                <option value="" disabled selected>Select your primary interest</option>
+                <option value="trekking">Trekking</option>
+                <option value="camping">Camping</option>
+                <option value="cycling">Cycling</option>
+                <option value="water_sports">Water Sports (Surfing, Boat)</option>
+                <option value="extreme_sports">Extreme Sports (Sky Diving, Bungee)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="message">Any previous experience?</label>
+            <textarea id="message" name="message" rows="4" placeholder="Tell us briefly about any past adventures..."></textarea>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit Application</button>
     </form>
 </section>
 
