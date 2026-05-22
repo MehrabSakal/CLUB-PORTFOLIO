@@ -1,0 +1,6 @@
+@CLUB_PORTFOLIO_HostAddress = http://localhost:5145
+
+GET {{CLUB_PORTFOLIO_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

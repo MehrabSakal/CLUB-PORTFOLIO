@@ -8,3 +8,29 @@
 /club.css
 /club.html
 /clubp.html
+
+# .NET Core Build and Publish Folders
+bin/
+obj/
+Publish/
+
+# Local SQLite Database
+*.db
+*.db-shm
+*.db-wal
+clubportfolio.db
+
+# User-specific and IDE settings
+.vs/
+.vscode/
+*.user
+*.suo
+*.idea/
+
+# Environment Variables / Secrets
+appsettings.Development.json
+.env
+
+# Logs
+logs/
+*.log

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - KUET Adventure Club</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body class="admin-body dashboard-body">
+    <header class="dashboard-header">
+        <h2>Admin Dashboard</h2>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+    </header>
+    <main class="dashboard-main">
+        <h3>Submitted Registrations</h3>
+        <div class="table-container">
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name</th>
+                        <th>Student ID</th>
+                        <th>Dept</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Interest</th>
+                        <th>Message</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Data will be loaded dynamically -->
+                </tbody>
+            </table>
+        </div>
+        <p id="dashboardError" class="error-msg hidden">Failed to load data. Please make sure you are logged in.</p>
+    </main>
+    <script src="admin.js" defer></script>
+</body>
+</html>
