@@ -13,6 +13,7 @@ public class AdminController : ControllerBase
     {
         public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
+        public bool RememberMe { get; set; }
     }
 
     [HttpPost("login")]
@@ -29,8 +30,8 @@ public class AdminController : ControllerBase
 
             var authProperties = new AuthenticationProperties
             {
-                IsPersistent = true,
-                ExpiresUtc = DateTimeOffset.UtcNow.AddDays(7) // Cookie will be saved for 7 days
+                IsPersistent = request.RememberMe,
+                ExpiresUtc = request.RememberMe ? DateTimeOffset.UtcNow.AddDays(7) : null
             };
 
             await HttpContext.SignInAsync(

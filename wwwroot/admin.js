@@ -8,13 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
             
             const username = document.getElementById("username").value;
             const password = document.getElementById("password").value;
+            const rememberMe = document.getElementById("rememberMe").checked;
             const errorMsg = document.getElementById("loginError");
 
             try {
                 const response = await fetch('/api/admin/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ username, password })
+                    body: JSON.stringify({ username, password, rememberMe })
                 });
 
                 if (response.ok) {
