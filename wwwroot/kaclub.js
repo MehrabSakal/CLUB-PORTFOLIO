@@ -86,4 +86,25 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    async function loadSiteContent() {
+        try {
+            const response = await fetch('/api/sitecontent');
+            if (response.ok) {
+                const data = await response.json();
+                const aboutUsEl = document.getElementById("aboutUsContent");
+                if (aboutUsEl && data.aboutUsText) aboutUsEl.innerText = data.aboutUsText;
+
+                const contactEmailEl = document.getElementById("contactEmailContent");
+                if (contactEmailEl && data.contactEmail) contactEmailEl.innerText = `Email: ${data.contactEmail}`;
+
+                const contactLocationEl = document.getElementById("contactLocationContent");
+                if (contactLocationEl && data.contactLocation) contactLocationEl.innerText = `Location: ${data.contactLocation}`;
+            }
+        } catch (error) {
+            console.error("Error loading site content:", error);
+        }
+    }
+
+    loadSiteContent();
+
 });

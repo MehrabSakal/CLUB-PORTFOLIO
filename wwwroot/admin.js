@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const dataTable = document.getElementById("dataTable");
     if (dataTable) {
         fetchRegistrationData();
+        fetchSiteContent();
     }
 
     const logoutBtn = document.getElementById("logoutBtn");
@@ -80,5 +81,60 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Fetch Data Error:", error);
             errorMsg.classList.remove("hidden");
         }
+    }
+
+    async function fetchSiteContent() {
+        try {
+            const response = await fetch('/api/sitecontent');
+            if (response.ok) {
+                const data = await response.json();
+                document.getElementById("aboutUsText").value = data.aboutUsText || '';
+                document.getElementById("contactEmail").value = data.contactEmail || '';
+                document.getElementById("contactLocation").value = data.contactLocation || '';
+            }
+        } catch (error) {
+            console.error("Fetch Site Content Error:", error);
+        }
+    }
+
+    const siteContentForm = document.getElementById("siteContentForm");
+    if (siteContentForm) {
+        siteContentForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const msgDiv = document.getElementById("contentUpdateMsg");
+            msgDiv.classList.add("hidden");
+
+            const payload = {
+                id: 1, // Add ID just in case
+                aboutUsText: document.getElementById("aboutUsText").value,
+                contactEmail: document.getElementById("contactEmail").value,
+                contactLocation: document.getElementById("contactLocation").value
+            };
+
+            try {
+                const response = await fetch('/api/sitecontent', {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    msgDiv.innerText = "Content updated successfully!";
+                    msgDiv.style.color = "var(--accent)";
+                    msgDiv.classList.remove("hidden");
+                } else if (response.status === 401 || response.status === 403) {
+                    window.location.href = '/admin.html';
+                } else {
+                    msgDiv.innerText = "Failed to update content.";
+                    msgDiv.style.color = "red";
+                    msgDiv.classList.remove("hidden");
+                }
+            } catch (error) {
+                console.error("Update Site Content Error:", error);
+                msgDiv.innerText = "Connection error.";
+                msgDiv.style.color = "red";
+                msgDiv.classList.remove("hidden");
+            }
+        });
     }
 });
