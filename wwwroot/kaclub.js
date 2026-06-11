@@ -105,6 +105,36 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    async function loadGalleryImages() {
+        try {
+            const response = await fetch('/api/gallery');
+            if (response.ok) {
+                const images = await response.json();
+                const galleryContainer = document.getElementById("galleryContainer");
+                if (galleryContainer && images.length > 0) {
+                    images.forEach(imgUrl => {
+                        const img = document.createElement("img");
+                        img.src = imgUrl;
+                        img.className = "gallery-img";
+                        img.alt = "Uploaded Gallery Image";
+                        img.style.cursor = "pointer";
+                        
+                        // Attach lightbox event to new images
+                        img.addEventListener("click", () => {
+                            lightboxImg.src = img.src;
+                            lightbox.classList.remove("hidden");
+                        });
+                        
+                        galleryContainer.appendChild(img);
+                    });
+                }
+            }
+        } catch (error) {
+            console.error("Error loading gallery images:", error);
+        }
+    }
+
     loadSiteContent();
+    loadGalleryImages();
 
 });

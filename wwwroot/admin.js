@@ -137,4 +137,45 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+
+    const galleryUploadForm = document.getElementById("galleryUploadForm");
+    if (galleryUploadForm) {
+        galleryUploadForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const msgDiv = document.getElementById("uploadMsg");
+            msgDiv.classList.add("hidden");
+
+            const imageInput = document.getElementById("galleryImage");
+            if (!imageInput.files || imageInput.files.length === 0) return;
+
+            const formData = new FormData();
+            formData.append("image", imageInput.files[0]);
+
+            try {
+                const response = await fetch('/api/gallery/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    msgDiv.innerText = "Image uploaded successfully!";
+                    msgDiv.style.color = "green";
+                    msgDiv.classList.remove("hidden");
+                    galleryUploadForm.reset();
+                } else if (response.status === 401 || response.status === 403) {
+                    window.location.href = '/admin.html';
+                } else {
+                    const data = await response.json();
+                    msgDiv.innerText = data.message || "Failed to upload image.";
+                    msgDiv.style.color = "red";
+                    msgDiv.classList.remove("hidden");
+                }
+            } catch (error) {
+                console.error("Upload Error:", error);
+                msgDiv.innerText = "Connection error.";
+                msgDiv.style.color = "red";
+                msgDiv.classList.remove("hidden");
+            }
+        });
+    }
 });
